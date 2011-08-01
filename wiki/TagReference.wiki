@@ -8,14 +8,14 @@
   ** [TagName <name>] - Required. The name of this sheet (Vampire Neonate; L5R Character; Jedi; etc.)
   ** [TagCopyright <copyright>] - Required. The original copyright holder of this sheet (Wizards of the Coast; White Wolf; Alderac; etc.)
   ** [TagAuthor <author>] - Required. The person who wrote the Nerdcules XML for this sheet (your name or monicker)
-  ** [TagDescription <description>] - Optional. A short description of this sheet; used for the <meta> description, which is referenced by search engines
+  ** [TagDescription <description>] - Optional. A short description of this sheet; used for the meta description, which is referenced by search engines
   ** [TagStyle <style>] - Optional. Supplemental CSS definition for this sheet
   ** [TagScript <script>] - Optional. Supplemental script for this sheet
   * [TagSet <set>] - Required. Defines a set of attributes; a sheet must have at least one set
   ** [TagColumn <column>] - Required. Defines a column; a set must have at least one column
   * [TagBreak <break>] - Defines a printable page break
 = Field Tags =
-Field tags can only appear inside of a <column> tag.
+Field tags can only appear inside of a column tag.
   * [TagText <text>] - Defines a text field
   * [TagSelect <select>] - Defines a select field
   ** [TagOption <option>] - Defines an option within a select field
