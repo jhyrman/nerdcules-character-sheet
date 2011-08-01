@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- simple elements -->
+<xs:element name="system" type="xs:string" />
+<xs:element name="game" type="xs:string" />
+<xs:element name="name" type="xs:string" />
+<xs:element name="copyright" type="xs:string" />
+<xs:element name="author" type="xs:string" />
+<xs:element name="description" type="xs:string" />
+<xs:element name="style" type="xs:string" />
+<xs:element name="script" type="xs:string" />
+<xs:element name="option" type="xs:string" />
+<xs:element name="em" type="xs:string" />
+<xs:element name="blank" />
+<xs:element name="break" />
+
+
+<!-- attributes -->
+<xs:attribute name="name" type="xs:string" />
+<xs:attribute name="min" type="xs:positiveInteger" />
+<xs:attribute name="max" type="xs:positiveInteger" />
+<xs:attribute name="initial" type="xs:positiveInteger" />
+<xs:attribute name="size" type="xs:positiveInteger" />
+<xs:attribute name="cols" type="xs:positiveInteger" />
+<xs:attribute name="rows" type="xs:positiveInteger" />
+<xs:attribute name="break" type="xs:boolean" />
+
+<!-- complex elements -->
+<xs:element name="head">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="system" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="game" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="name" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="copyright" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="author" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="description" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="style" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="script" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="text">
+	<xs:complexType>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="size" />
+				<xs:attribute ref="break" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="select">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="option" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute ref="break" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="dot">
+	<xs:complexType>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="min" />
+				<xs:attribute ref="max" />
+				<xs:attribute ref="initial" />
+				<xs:attribute ref="break" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="textarea">
+	<xs:complexType>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="cols" use="required" />
+				<xs:attribute ref="rows" use="required" />
+				<xs:attribute ref="break" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="check">
+	<xs:complexType>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="break" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="column">
+	<xs:complexType>
+		<xs:all>
+			<xs:element ref="text" />
+			<xs:element ref="select" />
+			<xs:element ref="dot" />
+			<xs:element ref="em" />
+			<xs:element ref="check" />
+			<xs:element ref="textarea" />
+			<xs:element ref="blank" />
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="set">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="column" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="sheet">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="head" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="set" minOccurs="1" maxOccurs="unbounded" />
+			<xs:element ref="break" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+</xs:schema>
