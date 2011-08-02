@@ -11,11 +11,25 @@ Every Nerdcules character sheet may have one `<style>` tag. This is an optional 
 
 The `<style>` tag can contain any valid CSS. There are several standard elements and classes used by the Nerdcules parser that you may wish to override:
 
-* element {{{form label}}} Used for text labels
-* class {{{.column}}} Used for columns
-* class (((.dot}}} Used for Nerdcules.Dots elements
-* class {{{.spinner}}} Used for Nerdcules.Spinner elements
-* class {{{.arrow}}} Used for the up- and down-arrows for Dots and Spinners
+{{{form label}}}
+
+ * Used for all `<label>` elements
+
+{{{.column}}}
+
+ * Class used for all columns
+
+{{{.dot}}}
+
+ * Class used for all Nerdcules.Dots elements
+
+{{{.spinner}}}
+
+ * Class used for all Nerdcules.Spinner elements
+
+{{{.arrow}}}
+
+ * Class used for all up- and down-arrows for Dots and Spinners.
 
 == Example ==
 
