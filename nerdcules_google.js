@@ -43,11 +43,6 @@ if ( typeof Nerdcules === "undefined" )
 Nerdcules.session_id = "";
 
 /**
- *  Holds the HTTP Request object
- */
-Nerdcules.xmlhttp	= null;
-
-/**
  *  Sets the session ID
  *  @param {String} session_id the session ID for the user
  */
@@ -363,10 +358,12 @@ Nerdcules.json_parse = (function () {
 /**
  *  Creates a new Dots object; used to represent dice pools and such.
  *  @class A series of dots to represent a value
- *  @param {String} Element The Element to draw the dots inside of (usually a span); can be anything accepted by Prototype $()
+ *  @param {String} Element The ID of the element to draw the dots inside of (usually a span)
  *  @param {Number} Minimum The Minimum value
  *  @param {Number} maximum The maxmimum value (also sets the number of dots to draw)
- *  @param {Number} Initial Optional Initial value; defaults to equal minimum
+ *  @param {Number} initial Optional initial value; defaults to equal minimum
+ *  @param {String} filled Optional HTML entity value to represent filled dots with; defaults to &#8226; (black circle)
+ *  @param {String} empty Optional HTML entity value to represent empty dots with; defaults to &#9702; (empty circle)
  */
 Nerdcules.Dots = function( element, minimum, maximum, initial, filled, empty )
 {
