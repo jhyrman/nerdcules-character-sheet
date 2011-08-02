@@ -11,11 +11,11 @@ Every Nerdcules character sheet has exactly one `<sheet>` tag as the root elemen
 
 == Example ==
 
-<code language="xml">
+{{{
 <sheet>
   <head>
   </head>
   <set name="example">
   </set>
 </sheet>
-</code>
+}}}
