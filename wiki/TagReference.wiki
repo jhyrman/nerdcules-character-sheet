@@ -1,4 +1,5 @@
 #summary A list of every tag currently supported by the parser
+#labels Featured
 
 = Structure Tags =
   * [TagSheet <sheet>] - Required. The root element for a character sheet
