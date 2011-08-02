@@ -1,0 +1,23 @@
+#summary The <set> Tag
+
+= Introduction =
+
+The `<set>` tag defines a collected set of elements (attributes, traits, etc.)
+
+
+= Details =
+
+Every Nerdcules character sheet must have at least one `<set>` tag. It must appear inside the [TagSheet <sheet>] tag, and the first `<set>` tag must come immediately after the end of the [TagHead <head>] tag. Each `<set>` must have at least one [TagColumn <column>] tag. `<set>` tags cannot be nested.
+
+== Example ==
+
+{{{
+<sheet>
+  <head>
+  </head>
+  <set>
+    <column>
+    </column>
+  </set>
+</sheet>
+}}}
