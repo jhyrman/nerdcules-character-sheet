@@ -1,0 +1,88 @@
+@media print
+{
+	#ads
+	{
+		display: none;
+	}
+	
+	#save
+	{
+		display: none;
+	}
+	
+	#info
+	{
+		display: none;
+	}
+	
+	.arrow
+	{
+		display: none;
+	}
+}
+
+.break
+{
+	page-break-after: always;
+}
+
+#ads
+{
+	float: top;
+	margin: 0 auto;
+	width: 728px;
+	height: 90px;
+	z-index: 100;
+}
+
+body
+{
+	font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+}
+fieldset
+{
+	margin-left: auto;
+	margin-right: auto;
+}	
+
+form
+{
+	align: center;
+}
+
+form label
+{
+	display: block;
+	float: left;
+	width: 100px;
+	margin: 5px 0 0;
+	text-align: right;
+	padding-right: 5px;
+}
+
+form br
+{
+	clear: left;
+}
+
+.column
+{
+	float: left;
+	text-align: center;
+	padding-right: 10px;
+	width: 200px;
+}
+
+.dot
+{
+	font-family: monospace;
+	font-size: 14pt;
+	font-weight: bold;
+	letter-spacing: -4px;
+}
+
+.arrow
+{
+	cursor: pointer;
+	font-weight: bold
+}
