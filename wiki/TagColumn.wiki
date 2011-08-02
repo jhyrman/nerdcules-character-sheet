@@ -1,0 +1,23 @@
+#summary The <column> Tag
+
+= Introduction =
+
+The `<column>` tag defines a column of elements.
+
+
+= Details =
+
+Every Nerdcules character sheet must have at least one `<column>` tag, which must appear inside of a [TagSet <set>] tag. Each `<column>` tag can have any number of [TagReference#Field_Tags field] tags.
+
+== Example ==
+
+{{{
+<sheet>
+  <head>
+  </head>
+  <set>
+    <column>
+    </column>
+  </set>
+</sheet>
+}}}
