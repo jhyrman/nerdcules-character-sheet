@@ -2,14 +2,14 @@
 
 = Introduction =
 
-The `<script>` tag enables the inclusion of supplementary javascript for the character sheet.
+The `<script>` tag enables the inclusion of supplementary !JavaScript for the character sheet.
 
 
 = Details =
 
 Every Nerdcules character sheet may have one `<script>` tag. This is an optional tag, which must appear inside the [TagHead <head>] tag. The `<script>` is eighth in sequence, appearing after the optional [TagStyle <style>] tag.
 
-The `<script>` tag can contain any valid javascript.
+The `<script>` tag can contain any valid !JavaScript.
 
 == Example ==
 
