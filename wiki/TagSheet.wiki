@@ -1,4 +1,4 @@
-#summary The `<sheet>` Tag
+#summary The <sheet> Tag
 
 = Introduction =
 
@@ -8,3 +8,14 @@ The `<sheet>` tag is the root element for a Nerdcules character sheet.
 = Details =
 
 Every Nerdcules character sheet has exactly one `<sheet>` tag as the root element. The `<sheet>` must contain exactly one [TagHead <head>], at least one [TagSet <set>], and zero or more [TagBreak <break>] tags.
+
+== Example ==
+
+<code language="xml">
+<sheet>
+  <head>
+  </head>
+  <set name="example">
+  </set>
+</sheet>
+</code>
