@@ -19,7 +19,8 @@ Field tags can only appear inside of a column tag.
   * [TagText <text>] - Defines a text field
   * [TagSelect <select>] - Defines a select field
   ** [TagOption <option>] - Defines an option within a select field
-  * [TagDot <dot>] - Defines a Merdcules.Dots field
+  * [TagDot <dot>] - Defines a Nerdcules.Dots element
+  * [TagSpinner <spinner>] - Defines a Nerdcules.Spinner element
   * [TagEm <em>] - Defines a title/heading
   * [TagCheck <check>] - Defines a checkbox field
   * [TagTextarea <textarea>] - Defines a textarea field
