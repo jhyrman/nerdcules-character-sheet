@@ -3,7 +3,7 @@
 = Structure Tags =
   * [TagSheet <sheet>] - Required. The root element for a character sheet
   * [TagHead <head>] - Required. Holds information about this sheet
-  ** [TagSystem <system>] - Required. The gaming system this sheet is for (oWoD; d20; RandKl etc.)
+  ** [TagSystem <system>] - Optional. The gaming system this sheet is for (oWoD; d20; RandKl etc.)
   ** [TagGame <game>] - Required. This game this sheet is for (Vampire: the Masquerade; Star Wars d20; Legend of the Five Rings; etc.)
   ** [TagName <name>] - Required. The name of this sheet (Vampire Neonate; L5R Character; Jedi; etc.)
   ** [TagCopyright <copyright>] - Required. The original copyright holder of this sheet (Wizards of the Coast; White Wolf; Alderac; etc.)
