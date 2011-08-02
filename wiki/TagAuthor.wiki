@@ -1,0 +1,14 @@
+#summary The <author> Tag
+
+= Introduction =
+
+The `<author>` tag identifies the person who created this Nerdcules character sheet.
+
+
+= Details =
+
+Every Nerdcules character sheet must have exactly one `<author>` tag, which must appear inside the [TagHead <head>] tag. The `<author>` tag is fifth in sequence, appearing after the [TagCopyright <copyright>] tag. The value of this tag should be your real name or monicker, or two or more names or monickers for a collaboration.
+
+== Example ==
+
+Please see the [TagHead <head>] tag for an example.
