@@ -14,7 +14,7 @@
   ** [TagScript <script>] - Optional. Supplemental script for this sheet
   * [TagSet <set>] - Required. Defines a set of attributes; a sheet must have at least one set
   ** [TagColumn <column>] - Required. Defines a column; a set must have at least one column
-  * [TagBreak <break>] - Defines a printable page break
+  * [TagBreak <break />] - Defines a printable page break
 = Field Tags =
 Field tags can only appear inside of a column tag.
   * [TagText <text>] - Defines a text field
