@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The <system> tag describes the system this game was designed under.
+The `<system>` tag describes the system this game was designed under.
 This tag is not not currently rendered by the parser; it is for reference only.
 
 
