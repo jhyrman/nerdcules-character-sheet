@@ -1,0 +1,14 @@
+#summary The <game> Tag
+
+= Introduction =
+
+The `<game>` tag identifies which game this character sheet is for.
+
+
+= Details =
+
+Every Nerdcules character sheet must have exactly one `<game>` tag, which must appear inside the [TagHead <head>] tag. It is the second tag in sequence, appearing after the optional [TagSystem <system>] tag.
+
+== Example ==
+
+Please see the [TagHead <head>] tag for an example.
