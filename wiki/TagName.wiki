@@ -1,0 +1,14 @@
+#summary The <name> Tag
+
+= Introduction =
+
+The `<name>` tag describes a name for this character sheet.
+
+
+= Details =
+
+Every Nerdcules character sheet must have exactly one `<name>` tag, which must appear inside the [TagHead <head>] tag. This tag is third in sequence, appearing after the [TagGame <game>] tag.
+
+== Example ==
+
+Please see the [TagHead <head>] tag for an example.
