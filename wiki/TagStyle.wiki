@@ -1,0 +1,30 @@
+#summary The <style> Tag
+
+= Introduction =
+
+The `<style>` tag contains supplemental style declarations for this sheet.
+
+
+= Details =
+
+Every Nerdcules character sheet may have one `<style>` tag. This is an optional tag. It must appear inside the [TagHead <head>] tag, and is seventh in sequence, appearing after the optional [TagDescription <description>] tag.
+
+The `<style>` tag can contain any valid CSS. There are several standard elements and classes used by the Nerdcules parser that you may wish to override:
+
+* element {{{form label}}} Used for text labels
+* class {{{.column}}} Used for columns
+* class (((.dot}}} Used for Nerdcules.Dots elements
+* class {{{.spinner}}} Used for Nerdcules.Spinner elements
+* class {{{.arrow}}} Used for the up- and down-arrows for Dots and Spinners
+
+== Example ==
+
+{{{
+<sheet>
+  <head>
+    <style>
+      place any valid CSS here
+    </style>
+  </head>
+</sheet>
+}}}
