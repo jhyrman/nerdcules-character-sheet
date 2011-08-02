@@ -44,7 +44,7 @@ class SheetParser
 	/** holds the script buffer for the form */
 	private $scriptForm = "";
 	/** holds the script buffer for the dots */
-	private $scriptDots = "";
+	private $scriptElements = "";
 	
 	/* State Trackers */
 	/** the current open tag */
@@ -101,13 +101,13 @@ class SheetParser
 	}
 	
 	/**
-	 *  Appends a string to the dpts script buffer
+	 *  Appends a string to the elements script buffer
 	 *  @param string $script the script to append
 	 *  @return void
 	 */
-	private function appendDots( $script )
+	private function appendElements( $script )
 	{
-		$this->scriptDots .= $script;
+		$this->scriptElements .= $script;
 	}
 	
 	/**
@@ -306,19 +306,42 @@ class SheetParser
 		$this->appendHTML( "      <span class=\"dot\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->tabIndex}\" onkeydown=\"Nerdcules.CharacterSheet.Dots." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
 		$this->appendHTML( "      <span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Dots." . $this->spaceToUnderscore( $tag['value'] ) . ".increment()\">&#8657;</span><span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Dots." . $this->spaceToUnderscore( $tag['value'] ) . ".decrement()\">&#8659;</span>{$break}\n" );
 		
-		$this->appendDots( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": new Nerdcules.Dots( '" . $this->spaceToUnderscore( $tag['value'] ) . "', {$min},  {$max}, {$init}" );
+		$this->appendElements( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": new Nerdcules.Dots( '" . $this->spaceToUnderscore( $tag['value'] ) . "', {$min},  {$max}, {$init}" );
 		
 		if ( isset( $tag['attributes']['FILLED'] ) )
 		{
-			$this->appendDots( ", '&#{$tag['attributes']['FILLED']};'" );
+			$this->appendElements( ", '&#{$tag['attributes']['FILLED']};'" );
 			
 			if ( isset( $tag['attributes']['EMPTY'] ) )
 			{
-				$this->appendDots( ", '&#{$tag['attributes']['EMPTY']};'" );
+				$this->appendElements( ", '&#{$tag['attributes']['EMPTY']};'" );
 			}
 		}
 		
-		$this->appendDots( "),\n" );
+		$this->appendElements( "),\n" );
+	}
+	
+	/**
+	 *  Creates a Nerdcules.Spinner element. Called by <spinner></spinner>
+	 *  @param array $tag an array-representation of the current tag element
+	 *  @return void
+	 */
+	private function Spinner( $tag )
+	{
+		$this->incrementIndex();
+		
+		//if break=false, don't print a <br />, otherwise print it
+		$break = ( isset( $tag['attributes']['BREAK'] ) ) ? ( ( $tag['attributes']['BREAK'] == "false" ) ? "" : "<br />" ) : "<br />";
+		
+		$min = ( isset( $tag['attributes']['MIN'] ) ) ? $tag['attributes']['MIN'] : 'unbounded';
+		$max = ( isset( $tag['attributes']['MAX'] ) ) ? $tag['attributes']['MAX'] : 'unbounded';
+		$init = ( isset( $tag['attributes']['INITIAL'] ) ) ? $tag['attributes']['INITIAL'] : 0;
+		
+		$this->appendHTML( $this->appendLabel( $tag ) );
+		$this->appendHTML( "      <span class=\"spinner\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->tabIndex}\" onkeydown=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
+		$this->appendHTML( "      <span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".increment()\">&#8657;</span><span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".decrement()\">&#8659;</span>{$break}\n" );
+		
+		$this->appendElements( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": new Nerdcules.Spinner( '" . $this->spaceToUnderscore( $tag['value'] ) . "', {$min},  {$max}, {$init} ),\n" );
 	}
 	
 	/**
@@ -420,9 +443,9 @@ class SheetParser
 	 *  Retrieve the rendered script to accompay the dot elements
 	 *  @return string the rendered dot script
 	 */
-	public function getScriptDots()
+	public function getScriptElements()
 	{
-		return $this->scriptDots;
+		return $this->scriptElements;
 	}
 	
 	/**
@@ -648,6 +671,13 @@ class SheetParser
 					if ( $this->openTag == "COLUMN" )
 					{
 						$this->Dot( $tag );
+					}
+					break;
+				case "SPINNER":
+					//<dot> can only be inside of a <column>; used for a Nerdcules.Dots element
+					if ( $this->openTag == "COLUMN" )
+					{
+						$this->Spinner( $tag );
 					}
 					break;
 				case "CHECK":
