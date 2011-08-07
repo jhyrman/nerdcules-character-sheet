@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<sheet 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://sheets.comoj.com/CharacterSheet.xsd">
+	<head>
+		<system>Old World of Darkness</system>
+		<game>Vampire: the Masquerade</game>
+		<name>Vampire Neonate</name>
+		<copyright>White Wolf Publishing</copyright>
+		<author>Joshua D. Hyrman</author>
+		<description>This is a dynamic, fillable character sheet for a neonate vampire character in the Vampire: the Masquerade role-playing game</description>
+		<style>
+		body
+		{
+			font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+		}
+		fieldset
+		{
+			margin-left: auto;
+			margin-right: auto;
+		}	
+	
+		form
+		{
+			align: center;
+		}
+		
+		form label
+		{
+			display: block;
+			float: left;
+			width: 100px;
+			margin: 5px 0 0;
+			text-align: right;
+			padding-right: 5px;
+		}
+		
+		form br
+		{
+			clear: left;
+		}
+		
+		.column
+		{
+			float: left;
+			text-align: center;
+			padding-right: 10px;
+			width: 200px;
+		}
+		
+		.dot
+		{
+			font-family: monospace;
+			font-size: 14pt;
+		}
+		
+		.arrow
+		{
+			cursor: pointer;
+			font-weight: bold
+		}
+		</style>
+	</head>
+	<set name="Character Information">
+		<column>
+			<text>Name</text>
+			<text>Player</text>
+			<select name="Clan">
+				<option>Brujah</option>
+				<option>Malkavian</option>
+				<option>Nosferatu</option>
+				<option>Toreador</option>
+				<option>Tremere</option>
+				<option>Ventrue</option>
+				<option>Lasombra</option>
+				<option>Tzimisce</option>
+				<option>Assamite</option>
+				<option>Setite</option>
+				<option>Gangrel</option>
+				<option>Giovanni</option>
+				<option>Ravnos</option>
+			</select>
+		</column>
+		<column>
+			<text>Nature</text>
+			<text>Demeanor</text>
+			<text>Concept</text>
+		</column>
+		<column>
+			<text>Sire</text>
+			<text>Generation</text>
+			<text>Haven</text>
+		</column>
+	</set>
+	<set name="Attributes">
+		<column name="Physical">
+			<dot min="1" max="5" initial="1">Strength</dot>
+			<dot min="1" max="5" initial="1">Dexterity</dot>
+			<dot min="1" max="5" initial="1">Stamina</dot>
+		</column>
+		<column name="Social">
+			<dot min="1" max="5" initial="1">Manipulation</dot>
+			<dot min="1" max="5" initial="1">Charisma</dot>
+			<dot min="1" max="5" initial="1">Appearance</dot>
+		</column>
+		<column name="Mental">
+			<dot min="1" max="5" initial="1">Intelligence</dot>
+			<dot min="1" max="5" initial="1">Perception</dot>
+			<dot min="1" max="5" initial="1">Wits</dot>
+		</column>
+	</set>
+	<set name="Abilities">
+		<column name="Talents">
+			<dot min="0" max="5" initial="0">Acting</dot>
+			<dot min="0" max="5" initial="0">Alertness</dot>
+			<dot min="0" max="5" initial="0">Athletics</dot>
+			<dot min="0" max="5" initial="0">Brawl</dot>
+			<dot min="0" max="5" initial="0">Dodge</dot>
+			<dot min="0" max="5" initial="0">Empathy</dot>
+			<dot min="0" max="5" initial="0">Intimidation</dot>
+			<dot min="0" max="5" initial="0">Leadership</dot>
+			<dot min="0" max="5" initial="0">Streetwise</dot>
+			<dot min="0" max="5" initial="0">Subterfuge</dot>
+		</column>
+		<column name="Skills">
+			<dot min="0" max="5" initial="0">Animal Ken</dot>
+			<dot min="0" max="5" initial="0">Drive</dot>
+			<dot min="0" max="5" initial="0">Etiquette</dot>
+			<dot min="0" max="5" initial="0">Firearms</dot>
+			<dot min="0" max="5" initial="0">Melee</dot>
+			<dot min="0" max="5" initial="0">Music</dot>
+			<dot min="0" max="5" initial="0">Repair</dot>
+			<dot min="0" max="5" initial="0">Security</dot>
+			<dot min="0" max="5" initial="0">Stealth</dot>
+			<dot min="0" max="5" initial="0">Survival</dot>
+		</column>
+		<column name="Knowledges">
+			<dot min="0" max="5" initial="0">Bureacracy</dot>
+			<dot min="0" max="5" initial="0">Computer</dot>
+			<dot min="0" max="5" initial="0">Finance</dot>
+			<dot min="0" max="5" initial="0">Investigation</dot>
+			<dot min="0" max="5" initial="0">Law</dot>
+			<dot min="0" max="5" initial="0">Linguistics</dot>
+			<dot min="0" max="5" initial="0">Medicine</dot>
+			<dot min="0" max="5" initial="0">Occult</dot>
+			<dot min="0" max="5" initial="0">Politics</dot>
+			<dot min="0" max="5" initial="0">Science</dot>
+		</column>
+	</set>
+	<set name="Advantages">
+		<column>
+			<em>Disciplines</em>
+			<dot min="0" max="5" initial="0">{text}disc0</dot>
+			<dot min="0" max="5" initial="0">{text}disc1</dot>
+			<dot min="0" max="5" initial="0">{text}disc2</dot>
+			<dot min="0" max="5" initial="0">{text}disc3</dot>
+			<dot min="0" max="5" initial="0">{text}disc4</dot>
+			<dot min="0" max="5" initial="0">{text}disc5</dot>
+		</column>
+		<column>
+			<em>Background</em>
+			<dot min="0" max="5" initial="0">{text}back0</dot>
+			<dot min="0" max="5" initial="0">{text}back1</dot>
+			<dot min="0" max="5" initial="0">{text}back2</dot>
+			<dot min="0" max="5" initial="0">{text}back3</dot>
+			<dot min="0" max="5" initial="0">{text}back4</dot>
+			<dot min="0" max="5" initial="0">{text}back5</dot>
+		</column>
+		<column>
+			<em>Virtues</em>
+			<dot min="1" max="5" initial="0">Conscience</dot>
+			<blank />
+			<dot min="1" max="5" initial="0">Self-Control</dot>
+			<blank />
+			<dot min="1" max="5" initial="0">Courage</dot>
+			<blank />
+		</column>
+	</set>
+	<set name="Other">
+		<column>
+			<em>Other Traits</em>
+			<dot min="0" max="5" initial="0">{text}other0</dot>
+			<dot min="0" max="5" initial="0">{text}other1</dot>
+			<dot min="0" max="5" initial="0">{text}other2</dot>
+			<dot min="0" max="5" initial="0">{text}other3</dot>
+			<dot min="0" max="5" initial="0">{text}other4</dot>
+			<dot min="0" max="5" initial="0">{text}other5</dot>
+			<dot min="0" max="5" initial="0">{text}other6</dot>
+			<dot min="0" max="5" initial="0">{text}other7</dot>
+			<dot min="0" max="5" initial="0">{text}other8</dot>
+			<dot min="0" max="5" initial="0">{text}other9</dot>
+		</column>
+		<column>
+			<em>Humanity</em>
+			<dot min="0" max="10" initial="0">{blank}humanity</dot>
+			<em>Willpower</em>
+			<dot min="0" max="10" initial="0">{blank}willpower</dot>
+			<dot min="0" max="10" initial="0" filled="9642" empty="9643">{blank}willCurrent</dot>
+			<em>Bloodpool</em>
+			<dot min="0" max="10" initial="0" filled="9642" empty="9643">{blank}bloodpool</dot>
+		</column>
+		<column>
+			<em>Health</em>
+			<check>Bruised</check>
+			<check>Hurt</check>
+			<check>Injured</check>
+			<check>Wounded</check>
+			<check>Mauled</check>
+			<check>Crippled</check>
+			<check>Incapacitated</check>
+			<em>Weakness</em>
+			<textarea cols="20" rows="2">{blank}Weakness</textarea>
+		</column>
+	</set>
+</sheet>
