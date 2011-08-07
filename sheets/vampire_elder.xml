@@ -162,10 +162,4 @@
 		</column>
 	</set>
 	<break />
-	<set name="History">
-		<column>
-			<em>Experience Points and Summary</em>
-			<textarea cols="80" rows="40">{blank}xp</textarea>
-		</column>
-	</set>
 </sheet>
