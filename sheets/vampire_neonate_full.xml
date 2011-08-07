@@ -1,0 +1,592 @@
+<?xml version="1.0"?>
+<sheet 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="http://sheets.comoj.com/CharacterSheet.xsd">
+	<head>
+		<system>Old World of Darkness</system>
+		<game>Vampire: the Masquerade</game>
+		<name>Vampire Neonate</name>
+		<copyright>White Wolf Publishing</copyright>
+		<author>Joshua D. Hyrman</author>
+		<description>This is a dynamic, fillable character sheet for a neonate vampire character in the Vampire: the Masquerade role-playing game</description>
+		<style>
+		.column
+		{
+			min-width: 175px;
+		}
+		#Weapon
+		{
+			min-width: 1px;
+		}
+		#Difficulty
+		{
+			min-width: 1px;
+		}
+		#Damage
+		{
+			min-width: 1px;
+		}
+		#Conceal
+		{
+			min-width: 1px;
+		}
+		#Range
+		{
+			min-width: 1px;
+		}
+		#Rate
+		{
+			min-width: 1px;
+		}
+		#Clip
+		{
+			min-width: 1px;
+		}
+		</style>
+	</head>
+	<set name="Character Information">
+		<column>
+			<text>Name</text>
+			<text>Player</text>
+			<select name="Clan">
+				<option>Brujah</option>
+				<option>Malkavian</option>
+				<option>Nosferatu</option>
+				<option>Toreador</option>
+				<option>Tremere</option>
+				<option>Ventrue</option>
+				<option>Lasombra</option>
+				<option>Tzimisce</option>
+				<option>Assamite</option>
+				<option>Setite</option>
+				<option>Gangrel</option>
+				<option>Giovanni</option>
+				<option>Ravnos</option>
+			</select>
+		</column>
+		<column>
+			<text>Nature</text>
+			<text>Demeanor</text>
+			<text>Concept</text>
+		</column>
+		<column>
+			<text>Sire</text>
+			<text>Generation</text>
+			<text>Haven</text>
+		</column>
+	</set>
+	<set name="Attributes">
+		<column name="Physical">
+			<dot min="1" max="5" initial="1">Strength</dot>
+			<dot min="1" max="5" initial="1">Dexterity</dot>
+			<dot min="1" max="5" initial="1">Stamina</dot>
+		</column>
+		<column name="Social">
+			<dot min="1" max="5" initial="1">Manipulation</dot>
+			<dot min="1" max="5" initial="1">Charisma</dot>
+			<dot min="1" max="5" initial="1">Appearance</dot>
+		</column>
+		<column name="Mental">
+			<dot min="1" max="5" initial="1">Intelligence</dot>
+			<dot min="1" max="5" initial="1">Perception</dot>
+			<dot min="1" max="5" initial="1">Wits</dot>
+		</column>
+	</set>
+	<set name="Abilities">
+		<column name="Talents">
+			<dot min="0" max="5" initial="0">Acting</dot>
+			<dot min="0" max="5" initial="0">Alertness</dot>
+			<dot min="0" max="5" initial="0">Athletics</dot>
+			<dot min="0" max="5" initial="0">Brawl</dot>
+			<dot min="0" max="5" initial="0">Dodge</dot>
+			<dot min="0" max="5" initial="0">Empathy</dot>
+			<dot min="0" max="5" initial="0">Intimidation</dot>
+			<dot min="0" max="5" initial="0">Leadership</dot>
+			<dot min="0" max="5" initial="0">Streetwise</dot>
+			<dot min="0" max="5" initial="0">Subterfuge</dot>
+		</column>
+		<column name="Skills">
+			<dot min="0" max="5" initial="0">Animal Ken</dot>
+			<dot min="0" max="5" initial="0">Drive</dot>
+			<dot min="0" max="5" initial="0">Etiquette</dot>
+			<dot min="0" max="5" initial="0">Firearms</dot>
+			<dot min="0" max="5" initial="0">Melee</dot>
+			<dot min="0" max="5" initial="0">Music</dot>
+			<dot min="0" max="5" initial="0">Repair</dot>
+			<dot min="0" max="5" initial="0">Security</dot>
+			<dot min="0" max="5" initial="0">Stealth</dot>
+			<dot min="0" max="5" initial="0">Survival</dot>
+		</column>
+		<column name="Knowledges">
+			<dot min="0" max="5" initial="0">Bureacracy</dot>
+			<dot min="0" max="5" initial="0">Computer</dot>
+			<dot min="0" max="5" initial="0">Finance</dot>
+			<dot min="0" max="5" initial="0">Investigation</dot>
+			<dot min="0" max="5" initial="0">Law</dot>
+			<dot min="0" max="5" initial="0">Linguistics</dot>
+			<dot min="0" max="5" initial="0">Medicine</dot>
+			<dot min="0" max="5" initial="0">Occult</dot>
+			<dot min="0" max="5" initial="0">Politics</dot>
+			<dot min="0" max="5" initial="0">Science</dot>
+		</column>
+	</set>
+	<set name="Advantages">
+		<column>
+			<em>Disciplines</em>
+			<dot min="0" max="5" initial="0">{text}disc0</dot>
+			<dot min="0" max="5" initial="0">{text}disc1</dot>
+			<dot min="0" max="5" initial="0">{text}disc2</dot>
+			<dot min="0" max="5" initial="0">{text}disc3</dot>
+			<dot min="0" max="5" initial="0">{text}disc4</dot>
+			<dot min="0" max="5" initial="0">{text}disc5</dot>
+		</column>
+		<column>
+			<em>Background</em>
+			<dot min="0" max="5" initial="0">{text}back0</dot>
+			<dot min="0" max="5" initial="0">{text}back1</dot>
+			<dot min="0" max="5" initial="0">{text}back2</dot>
+			<dot min="0" max="5" initial="0">{text}back3</dot>
+			<dot min="0" max="5" initial="0">{text}back4</dot>
+			<dot min="0" max="5" initial="0">{text}back5</dot>
+		</column>
+		<column>
+			<em>Virtues</em>
+			<dot min="1" max="5" initial="0">Conscience</dot>
+			<blank />
+			<dot min="1" max="5" initial="0">Self-Control</dot>
+			<blank />
+			<dot min="1" max="5" initial="0">Courage</dot>
+			<blank />
+		</column>
+	</set>
+	<set name="Other">
+		<column>
+			<em>Other Traits</em>
+			<dot min="0" max="5" initial="0">{text}other0</dot>
+			<dot min="0" max="5" initial="0">{text}other1</dot>
+			<dot min="0" max="5" initial="0">{text}other2</dot>
+			<dot min="0" max="5" initial="0">{text}other3</dot>
+			<dot min="0" max="5" initial="0">{text}other4</dot>
+			<dot min="0" max="5" initial="0">{text}other5</dot>
+			<dot min="0" max="5" initial="0">{text}other6</dot>
+			<dot min="0" max="5" initial="0">{text}other7</dot>
+			<dot min="0" max="5" initial="0">{text}other8</dot>
+			<dot min="0" max="5" initial="0">{text}other9</dot>
+		</column>
+		<column>
+			<em>Humanity</em>
+			<dot min="0" max="10" initial="0">{blank}humanity</dot>
+			<em>Willpower</em>
+			<dot min="0" max="10" initial="0">{blank}willpower</dot>
+			<dot min="0" max="10" initial="0" filled="9642" empty="9643">{blank}willCurrent</dot>
+			<em>Bloodpool</em>
+			<dot min="0" max="10" initial="0" filled="9642" empty="9643">{blank}bloodpool</dot>
+		</column>
+		<column>
+			<em>Health</em>
+			<check>Bruised</check>
+			<check>Hurt</check>
+			<check>Injured</check>
+			<check>Wounded</check>
+			<check>Mauled</check>
+			<check>Crippled</check>
+			<check>Incapacitated</check>
+			<em>Weakness</em>
+			<textarea cols="20" rows="2">{blank}Weakness</textarea>
+		</column>
+	</set>
+	<break />
+	<set name="Merits and Flaws">
+		<column>
+			<em>Merits</em>
+			<text size="20" break="false">{blank}meritName0</text>
+			<text size="2" break="true">{blank}meritCost0</text>
+			
+			<text size="20" break="false">{blank}meritName1</text>
+			<text size="2" break="true">{blank}meritCost1</text>
+			
+			<text size="20" break="false">{blank}meritName2</text>
+			<text size="2" break="true">{blank}meritCost2</text>
+			
+			<text size="20" break="false">{blank}meritName3</text>
+			<text size="2" break="true">{blank}meritCost3</text>
+			
+			<text size="20" break="false">{blank}meritName4</text>
+			<text size="2" break="true">{blank}meritCost4</text>
+			
+			<text size="20" break="false">{blank}meritName5</text>
+			<text size="2" break="true">{blank}meritCost5</text>
+			
+			<text size="20" break="false">{blank}meritName6</text>
+			<text size="2" break="true">{blank}meritCost6</text>
+		</column>
+		<column>
+			<em>Flaws</em>
+			<text size="20" break="false">{blank}flawName0</text>
+			<text size="2" break="true">{blank}flawCost0</text>
+			
+			<text size="20" break="false">{blank}flawName1</text>
+			<text size="2" break="true">{blank}flawCost1</text>
+			
+			<text size="20" break="false">{blank}flawName2</text>
+			<text size="2" break="true">{blank}flawCost2</text>
+			
+			<text size="20" break="false">{blank}flawName3</text>
+			<text size="2" break="true">{blank}flawCost3</text>
+			
+			<text size="20" break="false">{blank}flawName4</text>
+			<text size="2" break="true">{blank}flawCost4</text>
+			
+			<text size="20" break="false">{blank}flawName5</text>
+			<text size="2" break="true">{blank}flawCost5</text>
+			
+			<text size="20" break="false">{blank}flawName6</text>
+			<text size="2" break="true">{blank}flawCost6</text>
+		</column>
+	</set>
+	<set name="Experience">
+		<column>
+			<em>Gained</em>
+			<textarea cols="40" rows="20">{blank}experienceGained</textarea>
+		</column>
+		<column>
+			<em>Spent</em>
+			<textarea cols="40" rows="20">{blank}experienceSpent</textarea>
+		</column>
+	</set>
+	<set name="Rituals and Derangements">
+		<column>
+			<em>Ritual Name and Level</em>
+			<text size="15" break="false">{blank}ritualName0</text>
+			<text size="2">{blank}ritualLevel0</text>
+			<text size="15" break="false">{blank}ritualName1</text>
+			<text size="2">{blank}ritualLevel1</text>
+			<text size="15" break="false">{blank}ritualName2</text>
+			<text size="2">{blank}ritualLevel2</text>
+			<text size="15" break="false">{blank}ritualName3</text>
+			<text size="2">{blank}ritualLevel3</text>
+			<text size="15" break="false">{blank}ritualName4</text>
+			<text size="2">{blank}ritualLevel4</text>
+			<text size="15" break="false">{blank}ritualName5</text>
+			<text size="2">{blank}ritualLevel5</text>
+		</column>
+		<column>
+			<em>Derangement</em>
+			<text size="20">{blank}derangementName0</text>
+			<text size="20">{blank}derangementName1</text>
+			<text size="20">{blank}derangementName2</text>
+			<text size="20">{blank}derangementName3</text>
+			<text size="20">{blank}derangementName4</text>
+			<text size="20">{blank}derangementName5</text>
+		</column>
+	</set>
+	<set name="Combat">
+		<column>
+			<table height="1" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center" width="100">
+						<em>Weapon</em>
+					</td>
+					<td align="center" width="100">
+						<em>Difficulty</em>
+					</td>
+					<td align="center" width="100">
+						<em>Damage</em>
+					</td>
+					<td align="center" width="75">
+						<em>Conceal</em>
+					</td>
+					<td align="center" width="50">
+						<em>Range</em>
+					</td>
+					<td align="center" width="50">
+						<em>Rate</em>
+					</td>
+					<td align="center" width="50">
+						<em>Clip</em>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName0</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty0</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage0</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal0</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange0</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate0</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip0</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName1</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty1</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage1</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal1</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange1</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate1</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip1</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName2</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty2</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage2</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal2</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange2</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate2</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip2</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName3</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty3</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage3</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal3</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange3</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate3</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip3</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName4</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty4</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage4</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal4</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange4</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate4</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip4</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName5</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty5</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage5</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal5</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange5</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate5</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip5</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName6</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty6</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage6</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal6</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange6</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate6</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip6</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName7</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty7</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage7</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal7</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange7</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate7</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip7</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName8</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty8</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage8</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal8</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange8</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate8</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip8</text>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<text size="20">{blank}weaponName9</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty9</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponDamage9</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponConceal9</text>
+					</td>
+					<td align="center">
+						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange9</spinner>
+					</td>
+					<td align="center">
+						<spinner min="1" max="10" initial="6">{blank}weaponRate9</spinner>
+					</td>
+					<td align="center">
+						<text size="1">{blank}weaponClip9</text>
+					</td>
+				</tr>
+			</table>
+		</column>
+	</set>
+	<break />
+	<set name="Expanded Background">
+		<column>
+			<em>Allies</em>
+			<textarea cols="30" rows="5">{blank}Allies</textarea>
+			<em>Clan Prestige</em>
+			<textarea cols="30" rows="5">{blank}Clan Prestige</textarea>
+			<em>Contacts, Minor</em>
+			<textarea cols="30" rows="5">{blank}Contacts Minor</textarea>
+			<em>Contacts, Major</em>
+			<textarea cols="30" rows="5">{blank}Contacts Major</textarea>
+			<em>Herd</em>
+			<textarea cols="30" rows="5">{blank}Herd</textarea>
+		</column>
+		<column />
+		<column>
+			<em>Influence</em>
+			<textarea cols="30" rows="5">{blank}Influence</textarea>
+			<em>Mentor</em>
+			<textarea cols="30" rows="5">{blank}Mentor</textarea>
+			<em>Resources</em>
+			<textarea cols="30" rows="5">{blank}Resources</textarea>
+			<em>Retainers</em>
+			<textarea cols="30" rows="5">{blank}Retainers</textarea>
+			<em>Status</em>
+			<textarea cols="30" rows="5">{blank}Status</textarea>
+		</column>
+	</set>
+	<set name="Possession">
+		<column>
+			<em>Gear (Carried)</em>
+			<textarea cols="30" rows="5">{blank}Gear</textarea>
+			<em>Feeding Grounds</em>
+			<textarea cols="30" rows="5">{blank}Feeding Grounds</textarea>
+		</column>
+		<column />
+		<column>
+			<em>Equipment (Owned)</em>
+			<textarea cols="30" rows="5">{blank}Equipment</textarea>
+			<em>Vehicles</em>
+			<textarea cols="30" rows="5">{blank}Vehicles</textarea>
+		</column>
+	</set>
+	<set name="Havens">
+		<column>
+			<em>Location and Description</em>
+			<textarea cols="60" rows="5">{blank}Havens</textarea>
+		</column>
+	</set>
+	<break />
+</sheet>
