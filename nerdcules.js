@@ -43,12 +43,26 @@ if ( typeof Nerdcules === "undefined" )
 Nerdcules.session_id = "";
 
 /**
+ *  Holds the auth code for server communication
+ */
+Nerdcules.authCode = "";
+
+/**
  *  Sets the session ID. This should be called before calling any server-communication functions.
  *  @param {String} session_id the session ID for the user
  */
 Nerdcules.setSessionID = function( session_id )
 {
 	Nerdcules.session_id = session_id;
+}
+
+/**
+ *  Sets the auth code. This should be called before calling any server-communication functions.
+ *  @param {String} authCode the auth code for the user
+ */
+Nerdcules.setAuthCode = function( authCode )
+{
+	Nerdcules.authCode = authCode;
 }
 
 /**
@@ -563,8 +577,8 @@ Nerdcules.Spinner = function( element, minimum, maximum, initial )
 	this.element	= document.getElementById( element );
 	this.minimum	= minimum;
 	this.maximum	= maximum;
-	//if initial is set; this.initial = initial; otherwise, if this.minimum = unbounded, this.initial = 0, otherwise = this.minimum
-	this.initial	= ( typeof initial === 'undefined' ) ? ( ( this.minimum === "unbounded" ) ? 0 : this.minimum ) : this.initial;
+	//if initial is set, this.initial = initial; otherwise, if this.minimum = unbounded, this.initial = 0, otherwise = this.minimum
+	this.initial	= ( typeof initial === 'undefined' ) ? ( ( this.minimum === "unbounded" ) ? 0 : this.minimum ) : initial;
 	
 	//if initial value is less that minimum value, make initial = minimum
 	if ( this.initial < this.minimum )
@@ -602,9 +616,17 @@ Nerdcules.Spinner = function( element, minimum, maximum, initial )
 	 */
 	this.drawSpinner	= function()
 	{
+		var html = "";
 		this.clearSelection();
 		
-		this.element.innerHTML = this.current;
+		if ( this.current < 10 )
+		{
+			html = html + "0";
+		}
+		
+		html = html + this.current;
+		
+		this.element.innerHTML = html;
 	};
 	
 	/**
@@ -618,6 +640,10 @@ Nerdcules.Spinner = function( element, minimum, maximum, initial )
 			{
 				this.current += 1;
 			}
+		}
+		else
+		{
+			this.current += 1;
 		}
 		
 		//if the nerdcules sheet manager is also being used, let it know that the sheet has been changed
@@ -640,6 +666,10 @@ Nerdcules.Spinner = function( element, minimum, maximum, initial )
 			{
 				this.current -= 1;
 			}
+		}
+		else
+		{
+			this.current -= 1;
 		}
 		
 		//if the nerdcules sheet manager is also being used, let it know that the sheet has been changed
@@ -682,7 +712,7 @@ Nerdcules.Spinner = function( element, minimum, maximum, initial )
 		}
 		
 		this.current = val;
-		this.drawDots();
+		this.drawSpinner();
 	};
 	
 	/*
@@ -745,11 +775,32 @@ Nerdcules.sheetToJson = function()
 			//see if this is a text element or a check element
 			if ( document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).checked )
 			{
-				j = j + "		" + prop + ": " + document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).checked + ", \n";
+				try
+				{
+					j = j + "		" + prop + ": " + document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).checked + ", \n";
+				}
+				catch ( e )
+				{
+					alert( e.description + "\nprop=" + prop );
+				}
 			}
 			else
 			{
-				j = j + "		" + prop + ": \"" + document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).value.replace( new RegExp( "\"", "g" ), "\'" ) + "\", \n";
+				try
+				{
+					var text = document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).value;
+					
+					//replace double-quotes with single-quotes
+					text = text.replace( "\"", "\'" );
+					//replace newlines with <br>
+					text = text.replace( "\n", "<br>" );
+				
+					j = j + "		" + prop + ": \"" + text + "\", \n";
+				}
+				catch ( e )
+				{
+					alert( e.description + "\nprop=" + prop );
+				}
 			}
 			
 		}
@@ -760,9 +811,9 @@ Nerdcules.sheetToJson = function()
 	"	Elements:\n" +
 	"	{\n";
 	
-	for ( var prop in Nerdcules.CharacterSheet.Dots )
+	for ( var prop in Nerdcules.CharacterSheet.Elements )
 	{
-		if ( Nerdcules.CharacterSheet.Dots.hasOwnProperty( prop ) )
+		if ( Nerdcules.CharacterSheet.Elements.hasOwnProperty( prop ) )
 		{
 			//  Strength: 1,
 			j = j +
@@ -822,7 +873,7 @@ Nerdcules.saveSheet = function( BlankID, CharName, SheetID )
 	}
 	
 	parameters =
-		"session_id=" + Nerdcules.session_id + "&" +
+		"auth=" + Nerdcules.authCode + "&" +
 		"BlankID=" + encodeURIComponent( BlankID ) + "&" +
 		"CharName=" + encodeURIComponent( CharName ) + "&";
 	if ( typeof SheetID !== "undefined" )
@@ -912,18 +963,25 @@ Nerdcules.loadSheet = function( sheet )
 	//set all of the form elements
 	for ( var prop in sheet.Form )
 	{
-		if ( document.getElementById( prop ).checked )
+		try
 		{
-			document.getElementById( prop ).checked = sheet.Form[ prop ];
+			if ( document.getElementById( prop ).checked )
+			{
+				document.getElementById( prop ).checked = sheet.Form[ prop ];
+			}
+			else
+			{
+				document.getElementById( prop ).value = sheet.Form[ prop ].replace( "<br>", "\n" );
+			}
 		}
-		else
+		catch ( e )
 		{
-			document.getElementById( prop ).value = sheet.Form[ prop ];
+			alert( e );
 		}
 	}
 	
 	//set all of the Dots elements
-	for ( var prop in sheet.Dots )
+	for ( var prop in sheet.Elements )
 	{
 		try
 		{
