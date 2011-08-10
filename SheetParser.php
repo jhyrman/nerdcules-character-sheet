@@ -3,7 +3,7 @@
  *  Parses an XML character sheet into an HTML representation
  *  @author Joshua D. Hyrman <jhyrman@gmail.com>
  *  @copyright Copyright (c) 2011 Joshua D. Hyrman. Distributed under the MIT License.
- *  @version 1.0.1
+ *  @version 1.1.0
  *  @package Nerdcules.SheetManager
  */
 
@@ -26,7 +26,7 @@
  *********************************
  */
  
-define( "__PARSER_DEBUG__", FALSE );
+define( "__PARSER_DEBUG__", TRUE );
  
 class SheetParser
 {
@@ -45,16 +45,28 @@ class SheetParser
 	private $scriptForm = "";
 	/** holds the script buffer for the Elements */
 	private $scriptElements = "";
+	/** holds the REPEAT HTML buffer */
+	private $repeatHtml = "";
+	/** holds the REPEAT script form buffer */
+	private $repeatForm = "";
+	/** holds the REPEAT script elements buffer */
+	private $repeatElements = "";
 	
 	/* State Trackers */
 	/** the current open tag */
 	private $openTag = "";
 	/** the parent tag, if we descend deeper */
 	private $parentTag = "";
-	/** keeps track of certain elements */
-	private $currentTag = "";
 	/** is this element a part of a row */
 	private $inRow = false;
+	/** is this element in a select -- used by <option> */
+	private $inSelect = false;
+	/** is this element in a table -- used by <tr> and <td> */
+	private $inTable = false;
+	/** is this element inside a repeat element */
+	private $inRepeat = false;
+	/** how many times to repeat */
+	private $repeatTimes = 0;
 	/** keeps track of how many elements have been rendered */
 	private $tabIndex = 0;
 	
@@ -81,6 +93,23 @@ class SheetParser
 	{
 		return ( string )str_replace( array( " ", "-" ), "_", $original );
 	}
+		
+	/**
+	 *  Gets the next tab index, or "__TAB__" if inside of a repeat block
+	 *  @return int|string the next tab index, or "__TAB__" if inside of a repeat block
+	 */
+	private function getTabIndex()
+	{
+		if ( $this->inRepeat === TRUE )
+		{
+			return "__TAB__";
+		}
+		else
+		{
+			$this->tabIndex += 1;
+			return $this->tabIndex;
+		}
+	}
 	
 	/**
 	 *  Appends a string to the HTML buffer
@@ -89,7 +118,14 @@ class SheetParser
 	 */
 	private function appendHTML( $html )
 	{
-		$this->html .= $html;
+		if ( $this->inRepeat === TRUE )
+		{
+			$this->repeatHtml .= $html;
+		}
+		else
+		{
+			$this->html .= $html;
+		}
 	}
 	
 	/**
@@ -99,7 +135,14 @@ class SheetParser
 	 */
 	private function appendForm( $script )
 	{
-		$this->scriptForm .= $script;
+		if ( $this->inRepeat === TRUE )
+		{
+			$this->repeatForm .= $script;
+		}
+		else
+		{
+			$this->scriptForm .= $script;
+		}
 	}
 	
 	/**
@@ -109,16 +152,14 @@ class SheetParser
 	 */
 	private function appendElements( $script )
 	{
-		$this->scriptElements .= $script;
-	}
-	
-	/**
-	 *  Increment the element index
-	 *  @return void
-	 */
-	private function incrementIndex()
-	{
-		$this->tabIndex += 1;
+		if ( $this->inRepeat === TRUE )
+		{
+			$this->repeatElements .= $script;
+		}
+		else
+		{
+			$this->scriptElements .= $script;
+		}
 	}
 	
 	/**
@@ -161,11 +202,8 @@ class SheetParser
 				$this->appendHTML( " size=\"10\"" );
 			}
 			
-			$this->appendHTML( " tabIndex=\"{$this->tabIndex}\" />\n" );
-			
-			//since we used this tabIndex, we need to increase it
-			$this->incrementIndex();
-			
+			$this->appendHTML( " tabIndex=\"{$this->getTabIndex()}\" />\n" );
+						
 			//create the script for this form element (name box)
 			$this->appendForm( "      " . $this->spaceToUnderscore( $id ) . "Name: '" . $this->spaceToUnderscore( $id ) . "Name',\n" );
 		}
@@ -196,7 +234,7 @@ class SheetParser
 	{
 		//if break=true, always append a break
 		//if break=false, never append a break
-		//if not inside a row, append a break
+		//if not inside a row or table, append a break
 		//otherwise, do not append a break
 		if ( isset( $tag['attributes']['BREAK'] ) )
 		{
@@ -215,11 +253,80 @@ class SheetParser
 			}
 		}
 		
-		if ( $this->inRow === FALSE )
+		if ( ( $this->inRow === FALSE ) && ( $this->inTable === FALSE ) )
 		{
 			$this->appendHTML( "<br />\n" );
 			return;
 		}
+		else
+		{
+			$this->appendHTML( "\n" );
+			return;
+		}
+	}
+	
+	/**
+	 *  Sets up a new repeating set
+	 *  @param array $tag an array-representation of the current tag element
+	 *  @return void
+	 *  @since 1.2.0
+	 */
+	private function RepeatOpen( $tag )
+	{
+		$this->inRepeat = TRUE;
+		if ( isset( $tag['attributes']['TIMES'] ) )
+		{
+			$this->repeatTimes = (integer)$tag['attributes']['TIMES'];
+		}
+		else
+		{
+			$this->repeatTimes = 1;
+		}
+	}
+	
+	/**
+	 *  Prints out the repeating section
+	 *  @return void
+	 *  @since 1.2.0
+	 */
+	private function RepeatClose()
+	{
+		//each label inside of a REPEAT must include the string "__IDX__"
+		//this string is replaced by the current index of the repeat
+		//getTabIndex() will also return the string "__TAB__" if inside of a repeat
+		//this will be replaced with a correct tab index
+		
+		$this->inRepeat = FALSE;
+		
+		$html = "";
+		$form = "";
+		$elements = "";
+		
+		for ( $i = 0; $i < $this->repeatTimes; $i++ )
+		{
+			$html = $this->repeatHtml;
+			$form = $this->repeatForm;
+			$elements = $this->repeatElements;
+			
+			//replace all the "__TAB__" strings with the tab index
+			$tabPos = strpos( $html, "__TAB__" );
+			while ( $tabPos !== FALSE )
+			{
+				$html = substr_replace( $html, $this->getTabIndex(), $tabPos, 7 );
+				$tabPos = strpos( $html, "__TAB__" );
+			}
+			
+			//replace all "__IDX__" strings with the current repeat index
+			$this->html .= str_replace( "__IDX__", (string)$i, $html );
+			
+			$this->scriptForm .= str_replace( "__IDX__", (string)$i, $form );
+			
+			$this->scriptElements .= str_replace( "__IDX__", (string)$i, $elements );
+		}
+		
+		$this->repeatHtml = "";
+		$this->repeatForm = "";
+		$this->repeatElements = "";
 	}
 	
 	/**
@@ -275,15 +382,68 @@ class SheetParser
 	}
 	
 	/**
+	 *  Creates a new table. Called by <table>
+	 *  @param array $tag an array-representation of the current tag element
+	 *  @return void
+	 *  @since 1.2.0
+	 */
+	private function TableOpen( $tag )
+	{
+		$html = "";
+		$html .= str_repeat( "  ", $tag['level'] ) . "<table ";
+		if ( isset( $tag['attributes'] ) )
+		{
+			foreach ( $tag['attributes'] as $name => $value )
+			{
+				$html .= "{$name}=\"{$value}\" ";
+			}
+		}
+		$html .= ">\n";
+		
+		$this->appendHTML( $html );
+		$this->inTable = true;
+	}
+	
+	/**
+	 *  Closes the current table. Called by </table>
+	 *  @return void
+	 *  @since 1.2.0
+	 */
+	private function TableClose( $tag )
+	{
+		$this->appendHTML( str_repeat( "  ", $tag['level'] ) . "</table>\n" );
+		$this->inTable = false;
+	}
+	
+	/**
+	 *  Creates a new table cell. Called by <td>
+	 *  @param array $tag an array-representation of the current tag element
+	 *  @return void
+	 *  @since 1.2.0
+	 */
+	private function TDOpen( $tag )
+	{
+		$html = "";
+		$html .= str_repeat( "  ", $tag['level'] ) . "<td ";
+		if ( isset( $tag['attributes'] ) )
+		{
+			foreach ( $tag['attributes'] as $name => $value )
+			{
+				$html .= "{$name}=\"{$value}\" ";
+			}
+		}
+		$html .= ">\n";
+		
+		$this->appendHTML( $html );
+	}
+	
+	/**
 	 *  Creates a text input field. Called by <text></text>
 	 *  @param array $tag an array-representation of the current tag element
 	 *  @return void
 	 */
 	private function Textfield( $tag )
 	{
-		$this->incrementIndex();
-		
-		
 		$this->appendLabel( $tag );
 		$this->appendHTML( "      <input type=\"text\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\"" );
 		
@@ -296,7 +456,7 @@ class SheetParser
 			$this->appendHTML( " size=\"10\"" );
 		}
 		
-		$this->appendHTML( " tabIndex=\"{$this->tabIndex}\" onChange=\"Nerdcules.SheetChanged = true;\"/>" );
+		$this->appendHTML( " tabIndex=\"{$this->getTabIndex()}\" onChange=\"Nerdcules.SheetChanged = true;\"/>" );
 		$this->appendBreak( $tag );
 	
 		$this->appendForm( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": '" . $this->spaceToUnderscore( $tag['value'] ) . "',\n" );
@@ -309,10 +469,8 @@ class SheetParser
 	 */
 	private function SelectOpen( $tag )
 	{
-		$this->incrementIndex();
-		
 		$this->appendHTML( $this->appendLabel( $tag ) );
-		$this->appendHTML( "      <select id=\"" . $this->spaceToUnderscore( $tag['attributes']['NAME'] ) . "\" tabIndex=\"{$this->tabIndex}\">\n" );
+		$this->appendHTML( "      <select id=\"" . $this->spaceToUnderscore( $tag['attributes']['NAME'] ) . "\" tabIndex=\"{$this->getTabIndex()}\">\n" );
 		
 		$this->appendForm( "      " . $this->spaceToUnderscore( $tag['attributes']['NAME'] ) . ": '" . $this->spaceToUnderscore( $tag['attributes']['NAME'] ) . "',\n" );
 	
@@ -347,14 +505,12 @@ class SheetParser
 	 */
 	private function Dot( $tag )
 	{
-		$this->incrementIndex();
-				
 		$min = ( isset( $tag['attributes']['MIN'] ) ) ? $tag['attributes']['MIN'] : 0;
 		$max = ( isset( $tag['attributes']['MAX'] ) ) ? $tag['attributes']['MAX'] : 10;
 		$init = ( isset( $tag['attributes']['INITIAL'] ) ) ? $tag['attributes']['INITIAL'] : $min;
 		
 		$this->appendHTML( $this->appendLabel( $tag ) );
-		$this->appendHTML( "      <span class=\"dot\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->tabIndex}\" onkeydown=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
+		$this->appendHTML( "      <span class=\"dot\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->getTabIndex()}\" onkeydown=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
 		$this->appendHTML( "      <span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".increment()\">&#8657;</span><span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".decrement()\">&#8659;</span>" );
 		$this->appendBreak( $tag );
 		
@@ -380,8 +536,6 @@ class SheetParser
 	 */
 	private function Spinner( $tag )
 	{
-		$this->incrementIndex();
-		
 		$min = ( isset( $tag['attributes']['MIN'] ) ) ? $tag['attributes']['MIN'] : 'unbounded';
 		$max = ( isset( $tag['attributes']['MAX'] ) ) ? $tag['attributes']['MAX'] : 'unbounded';
 		$init = ( isset( $tag['attributes']['INITIAL'] ) ) ? $tag['attributes']['INITIAL'] : 0;
@@ -397,7 +551,7 @@ class SheetParser
 		}
 		
 		$this->appendHTML( $this->appendLabel( $tag ) );
-		$this->appendHTML( "      <span class=\"spinner\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->tabIndex}\" onkeydown=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
+		$this->appendHTML( "      <span class=\"spinner\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->getTabIndex()}\" onkeydown=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".keyPress( event )\"></span>\n" );
 		$this->appendHTML( "      <span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".increment()\">&#8657;</span><span class=\"arrow\" onClick=\"Nerdcules.CharacterSheet.Elements." . $this->spaceToUnderscore( $tag['value'] ) . ".decrement()\">&#8659;</span>" );
 		$this->appendBreak( $tag );
 		
@@ -411,10 +565,9 @@ class SheetParser
 	 *  @return void
 	 */
 	private function Check( $tag )
-	{		
-		$this->incrementIndex();
+	{
 		$this->appendHTML( $this->appendLabel( $tag ) );
-		$this->appendHTML( "      <input type=\"checkbox\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->tabIndex}\" />" );
+		$this->appendHTML( "      <input type=\"checkbox\" id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" tabIndex=\"{$this->getTabIndex()}\" />" );
 		$this->appendBreak( $tag );
 		
 		$this->appendForm( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": '" . $this->spaceToUnderscore( $tag['value'] ) . "',\n" );
@@ -427,10 +580,8 @@ class SheetParser
 	 */
 	private function Textarea( $tag )
 	{
-		$this->incrementIndex();
-		
 		$this->appendHTML( $this->appendLabel( $tag ) );
-		$this->appendHTML( "      <textarea id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" cols=\"{$tag['attributes']['COLS']}\" rows=\"{$tag['attributes']['ROWS']}\" tabIndex=\"{$this->tabIndex}\" onChange=\"Nerdcules.SheetChanged = true;\"></textarea>" );
+		$this->appendHTML( "      <textarea id=\"" . $this->spaceToUnderscore( $tag['value'] ) . "\" cols=\"{$tag['attributes']['COLS']}\" rows=\"{$tag['attributes']['ROWS']}\" tabIndex=\"{$this->getTabIndex()}\" onChange=\"Nerdcules.SheetChanged = true;\"></textarea>" );
 		$this->appendBreak( $tag );
 		
 		$this->appendForm( "      " . $this->spaceToUnderscore( $tag['value'] ) . ": '" . $this->spaceToUnderscore( $tag['value'] ) . "',\n" );
@@ -653,6 +804,16 @@ class SheetParser
 						}
 					}
 					break;
+				case "REPEAT":
+					if ( $tag['type'] == "open" )
+					{
+						$this->RepeatOpen( $tag );
+					}
+					else
+					{
+						$this->RepeatClose();
+					}
+					break;
 				case "SET":
 					//<set> signifies the beginning of a fieldset
 					if ( $tag['type'] == "open" )
@@ -710,6 +871,59 @@ class SheetParser
 						else
 						{
 							//no defined behavior for a complete row tag ( <row /> )
+						}
+					}
+					break;
+				case "TABLE":
+					//<table> can only be inside of a <column>; used for tabular data
+					if ( $this->openTag == "COLUMN" )
+					{
+						if ( $tag['type'] == "open" )
+						{
+							$this->TableOpen( $tag );
+						}
+						elseif ( $tag['type'] == "close" )
+						{
+							$this->TableClose( $tag );
+						}
+						else
+						{
+						}
+					}
+					break;
+				case "TR":
+					if ( $this->inTable === TRUE )
+					{
+						if ( $tag['type'] == "open" )
+						{
+							$this->appendHTML( "<tr>\n" );
+						}
+						elseif ( $tag['type'] == "close" )
+						{
+							$this->appendHTML( "</tr>\n" );
+						}
+						else
+						{
+						}
+					}
+					break;
+				case "TD":
+					if ( $this->inTable === TRUE )
+					{
+						if ( $tag['type'] == "open" )
+						{
+							$this->TDOpen( $tag );
+						}
+						elseif ( $tag['type'] == "close" )
+						{
+							$this->appendHTML( str_repeat( "  ", $tag['level'] ) . "</td>\n" );
+						}
+						elseif ( $tag['type'] == "complete" )
+						{
+							$this->appendHTML( str_repeat( "  ", $tag['level'] ) . "<td>&nbsp;</td>" );
+						}
+						else
+						{
 						}
 					}
 					break;
@@ -779,9 +993,8 @@ class SheetParser
 					//<head> can only be inside of a <column>; used for a heading ( <strong> )
 					if ( $this->openTag == "COLUMN" )
 					{
-						//if break=false, don't print a <br />, otherwise print it
-						$break = ( isset( $tag['attributes']['BREAK'] ) ) ? ( ( $tag['attributes']['BREAK'] == "false" ) ? "" : "<br />" ) : "<br />";
-						$this->appendHTML( str_repeat( "  ", $tag['level'] ) . "<strong>{$tag['value']}</strong>{$break}\n" );
+						$this->appendHTML( str_repeat( "  ", $tag['level'] ) . "<strong>{$tag['value']}</strong>" );
+						$this->appendBreak( $tag );
 					}
 					break;
 				case "BREAK":
