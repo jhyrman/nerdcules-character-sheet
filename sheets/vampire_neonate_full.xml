@@ -306,236 +306,31 @@ xsi:noNamespaceSchemaLocation="http://sheets.comoj.com/CharacterSheet.xsd">
 						<em>Clip</em>
 					</td>
 				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName0</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty0</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage0</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal0</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange0</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate0</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip0</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName1</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty1</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage1</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal1</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange1</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate1</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip1</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName2</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty2</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage2</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal2</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange2</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate2</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip2</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName3</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty3</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage3</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal3</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange3</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate3</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip3</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName4</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty4</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage4</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal4</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange4</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate4</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip4</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName5</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty5</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage5</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal5</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange5</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate5</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip5</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName6</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty6</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage6</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal6</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange6</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate6</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip6</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName7</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty7</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage7</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal7</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange7</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate7</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip7</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName8</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty8</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage8</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal8</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange8</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate8</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip8</text>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<text size="20">{blank}weaponName9</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDifficulty9</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponDamage9</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponConceal9</text>
-					</td>
-					<td align="center">
-						<spinner min="1" max="unbounded" initial="20">{blank}weaponRange9</spinner>
-					</td>
-					<td align="center">
-						<spinner min="1" max="10" initial="6">{blank}weaponRate9</spinner>
-					</td>
-					<td align="center">
-						<text size="1">{blank}weaponClip9</text>
-					</td>
-				</tr>
+				<repeat times="10">
+					<tr>
+						<td align="center">
+							<text size="20">{blank}weaponName__IDX__</text>
+						</td>
+						<td align="center">
+							<spinner min="1" max="10" initial="6">{blank}weaponDifficulty__IDX__</spinner>
+						</td>
+						<td align="center">
+							<spinner min="1" max="10" initial="6">{blank}weaponDamage__IDX__</spinner>
+						</td>
+						<td align="center">
+							<text size="1">{blank}weaponConceal__IDX__</text>
+						</td>
+						<td align="center">
+							<spinner min="1" max="unbounded" initial="20">{blank}weaponRange__IDX__</spinner>
+						</td>
+						<td align="center">
+							<spinner min="1" max="10" initial="6">{blank}weaponRate__IDX__</spinner>
+						</td>
+						<td align="center">
+							<text size="1">{blank}weaponClip__IDX__</text>
+						</td>
+					</tr>
+				</repeat>
 			</table>
 		</column>
 	</set>
