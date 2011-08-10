@@ -9,7 +9,7 @@ The `<head>` tag contains information about this sheet.
 Every Nerdcules character sheet must have exactly one `<head>` tag, which must be the first tag immediately after the opening `<sheet>` tag.
 
 The `<head>` tag contains the following tags, in order:
-  ** [TagSystem <system>] - Optional. The gaming system this sheet is for (oWoD; d20; RandKl etc.)
+  ** [TagSystem <system>] - Optional. The gaming system this sheet is for (oWoD; d20; RandK etc.)
   ** [TagGame <game>] - Required. This game this sheet is for (Vampire: the Masquerade; Star Wars d20; Legend of the Five Rings; etc.)
   ** [TagName <name>] - Required. The name of this sheet (Vampire Neonate; L5R Character; Jedi; etc.)
   ** [TagCopyright <copyright>] - Required. The original copyright holder of this sheet (Wizards of the Coast; White Wolf; Alderac; etc.)
