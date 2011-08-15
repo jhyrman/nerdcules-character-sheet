@@ -791,9 +791,9 @@ Nerdcules.sheetToJson = function()
 					var text = document.getElementById( Nerdcules.CharacterSheet.Form[ prop ] ).value;
 					
 					//replace double-quotes with single-quotes
-					text = text.replace( "\"", "\'" );
+					text = text.replace( /\"/g, "\'" );
 					//replace newlines with <br>
-					text = text.replace( "\n", "<br>" );
+					text = text.replace( /\n/g, "<br>" );
 				
 					j = j + "		" + prop + ": \"" + text + "\", \n";
 				}
@@ -971,7 +971,7 @@ Nerdcules.loadSheet = function( sheet )
 			}
 			else
 			{
-				document.getElementById( prop ).value = sheet.Form[ prop ].replace( "<br>", "\n" );
+				document.getElementById( prop ).value = sheet.Form[ prop ].replace( /<br>/g, "\n" );
 			}
 		}
 		catch ( e )
